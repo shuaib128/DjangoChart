@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <form action="{% url 'chart:homepage' %}">
+        {% csrf_token %}
+        <div class="country">
+            <input type="text" name="country" placeholder="Enter Country Name">
+            <button type="submit">Chart</button>
+            <h1 style="text-align: center; margin:0px">{{country}}</h1>
+        </div>
+    </form>
+
+    <div class="canv">
+        <canvas id="myChart" width="100vw" height="100vh"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [{% for date in dates %}'{{date}}',{% endfor %}],
+                datasets: [{
+                    label: 'Nmber Of Cases',
+                    data: [{% for case in cases %}'{{case}}',{% endfor %}],
+                    
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: "Chart.js HUGE data set"
+                },
+                maintainAspectRatio: false,
+            }
+        });
+    </script>
+</body>
+</html>

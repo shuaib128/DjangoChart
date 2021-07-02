@@ -1,0 +1,39 @@
+body, html{
+    letter-spacing: 1px;
+    font-family: 'Amaranth', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.canv{
+    height: 529px;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 19px;
+}
+
+.country{
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 16px;
+}
+
+.country input{
+    width: 200px;
+    height: 31px;
+    border-radius: 3px;
+    border: 1px solid #dadada;
+    padding: 0 13px;
+}
+
+.country button{
+    width: 85px;
+    border: none;
+    height: 34px;
+    color: white;
+    background: black;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
